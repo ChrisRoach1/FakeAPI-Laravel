@@ -31,10 +31,11 @@ $deleteUser = function (Logout $logout) {
         </p>
     </header>
 
-    <x-danger-button
+    <x-mary-button
         x-data=""
+        class="btn-error"
         x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion')"
-    >{{ __('Delete Account') }}</x-danger-button>
+    >{{ __('Delete Account') }}</x-mary-button>
 
     <x-modal name="confirm-user-deletion" :show="$errors->isNotEmpty()" focusable>
         <form wire:submit="deleteUser" class="p-6">
@@ -50,7 +51,7 @@ $deleteUser = function (Logout $logout) {
             <div class="mt-6">
                 <x-input-label for="password" value="{{ __('Password') }}" class="sr-only" />
 
-                <x-text-input
+                <x-mary-input
                     wire:model="password"
                     id="password"
                     name="password"
@@ -63,13 +64,13 @@ $deleteUser = function (Logout $logout) {
             </div>
 
             <div class="mt-6 flex justify-end">
-                <x-secondary-button x-on:click="$dispatch('close')">
+                <x-mary-button x-on:click="$dispatch('close')">
                     {{ __('Cancel') }}
-                </x-secondary-button>
+                </x-mary-button>
 
-                <x-danger-button class="ms-3">
+                <x-mary-button type="submit" class="btn-error ms-3">
                     {{ __('Delete Account') }}
-                </x-danger-button>
+                </x-mary-button>
             </div>
         </form>
     </x-modal>
