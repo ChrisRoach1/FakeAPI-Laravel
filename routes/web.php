@@ -45,7 +45,7 @@ Route::get('/v1/custom', function (Request $req){
     }
 
     return response()->json($returnArray);
-});
+})->middleware('throttle:api');
 
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
