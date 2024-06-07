@@ -18,7 +18,7 @@ new class extends Component {
 
     public function refreshKey()
     {
-        $newKey = \Illuminate\Support\Str::random(32);
+        $newKey = \Illuminate\Support\Str::random(26);
         $this->user->api_key = $newKey;
         $this->user->save();
         $this->redirect('dashboard');
@@ -26,7 +26,13 @@ new class extends Component {
 
 }; ?>
 
-<div class="flex gap-x-4 items-end">
-    <x-mary-input class="flex-initial w-96" label="API Key" wire:model="apiKey" disabled="true"/>
-    <x-mary-button wire:click="refreshKey" icon="o-arrow-path" class="btn btn-primary"/>
+<div class="w-96">
+    <x-mary-input label="API Key" wire:model="apiKey" disabled="true">
+        <x-slot:append>
+            {{-- Add `rounded-l-none` class --}}
+            <x-mary-button wire:click="refreshKey" icon="o-arrow-path" class="rounded-l-none btn btn-primary" />
+        </x-slot:append>
+    </x-mary-input>
 </div>
+
+
